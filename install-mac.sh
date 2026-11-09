@@ -1,11 +1,11 @@
 #!/bin/bash
-# Installs (or updates) AcidSampler, Acid303 and AcidKit into the Mac's VST3 folder and
+# Installs (or updates) AcidSampler, AcidOne, Acid303 and AcidKit into the Mac's VST3 folder and
 # removes the "downloaded from the internet" block, so Live can load them.
 #   curl -fsSL https://raw.githubusercontent.com/aleksandrsvoboda/acid-plugins/main/install-mac.sh | bash
 set -u
 REPO="https://github.com/aleksandrsvoboda/acid-plugins/releases/download"
 DEST="/Library/Audio/Plug-Ins/VST3"
-PLUGINS="AcidSampler/acidsampler-1.0 Acid303/acid303-2.0 AcidKit/acidkit-1.0"
+PLUGINS="AcidSampler/acidsampler-1.0 AcidOne/acidone-1.0 Acid303/acid303-2.0 AcidKit/acidkit-1.0"
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
