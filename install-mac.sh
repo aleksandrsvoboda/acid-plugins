@@ -1,25 +1,28 @@
 #!/bin/bash
-# Installs (or updates) AcidSampler, SacedOne, Acid303 and AcidKit into the Mac's VST3 folder and
-# removes the "downloaded from the internet" block, so Live can load them.
-#   curl -fsSL https://raw.githubusercontent.com/aleksandrsvoboda/acid-plugins/main/install-mac.sh | bash
+# Installs (or updates) Sacid303, SacidKit, SacidSampler, SacidOne and SacidHalo into the Mac's VST3
+# folder and removes the "downloaded from the internet" block, so Live can load them.
+#   curl -fsSL https://raw.githubusercontent.com/aleksandrsvoboda/sacid-plugins/main/install-mac.sh | bash
 set -u
-REPO="https://github.com/aleksandrsvoboda/acid-plugins/releases/download"
-DEST="/Library/Audio/Plug-Ins/VST3"
-PLUGINS="AcidSampler/acidsampler-1.0 SacedOne/sacedone-1.1 Acid303/acid303-2.0 AcidKit/acidkit-1.0"
+REPO="${SACID_REPO:-https://github.com/aleksandrsvoboda/sacid-plugins/releases/download}"
+DEST="${SACID_DEST:-/Library/Audio/Plug-Ins/VST3}"
+PLUGINS="Sacid303/sacid303-2.1 SacidKit/sacidkit-1.1 SacidSampler/sacidsampler-1.1 SacidOne/sacidone-1.2 SacidHalo/sacidhalo-1.0"
+OLD_NAMES="Acid303 AcidKit AcidSampler AcidOne SacedOne"
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 echo "Installing into $DEST (macOS asks for your password once)."
 sudo mkdir -p "$DEST" || exit 1
 
-# AcidOne was renamed SacedOne: same plug-in, so the old copy would show up twice in Live.
-sudo rm -rf "$DEST/AcidOne.vst3" "$HOME/Library/Audio/Plug-Ins/VST3/AcidOne.vst3"
+# The plug-ins were renamed; the old copies are the same plug-ins and would show up twice.
+for old in $OLD_NAMES; do
+    sudo rm -rf "$DEST/$old.vst3" "$HOME/Library/Audio/Plug-Ins/VST3/$old.vst3"
+done
 
 for entry in $PLUGINS; do
     name="${entry%%/*}"
     tag="${entry#*/}"
     if ! curl -fsSL -o "$TMP/$name.zip" "$REPO/$tag/$name-macos.zip"; then
-        echo "  $name: download failed, skipped"
+        echo "  $name: download failed, skipped (try again in a few minutes)"
         continue
     fi
     mkdir -p "$TMP/$name"
@@ -30,4 +33,4 @@ done
 
 echo
 echo "Done. In Ableton Live: Settings > Plug-Ins, turn on 'Use VST3 Plug-In System Folders',"
-echo "then hold Option and click Rescan. They're under Plug-Ins > VST3 > Acid303 and Saced."
+echo "then hold Option and click Rescan. They're under Plug-Ins > VST3 > Sacid."
