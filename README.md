@@ -10,9 +10,21 @@ Free VST3 instruments and effects for Ableton Live and other DAWs. Each one is a
 | **Sacid303** 2.1 | TB-303 style bass synth and acid workstation, with a 16-pattern sequencer. | [zip](https://github.com/aleksandrsvoboda/sacid-plugins/releases/download/sacid303-2.1/Sacid303-macos.zip) | [zip](https://github.com/aleksandrsvoboda/sacid-plugins/releases/download/sacid303-2.1/Sacid303-win64.zip) | [tar.gz](https://github.com/aleksandrsvoboda/sacid-plugins/releases/download/sacid303-2.1/Sacid303-linux-x64.tar.gz) |
 | **SacidHalo** 1.0 | *Effect*: a harmonic exciter (even or odd harmonics, filtered) feeding a reverb with attack, decay, size, diffusion and width. | [zip](https://github.com/aleksandrsvoboda/sacid-plugins/releases/download/sacidhalo-1.0/SacidHalo-macos.zip) | [zip](https://github.com/aleksandrsvoboda/sacid-plugins/releases/download/sacidhalo-1.0/SacidHalo-win64.zip) | [tar.gz](https://github.com/aleksandrsvoboda/sacid-plugins/releases/download/sacidhalo-1.0/SacidHalo-linux-x64.tar.gz) |
 
-## Install all five with one command
+## Install with one command
 
-Each command installs all five plugins, or updates them to the newest versions. Run the same command again later to update.
+Each command lists the five plugins, marks the ones you already have, and asks which to install:
+
+```
+  1) SacidOne      mono synth: analog / FM / granular + step sequencer   [installed]
+  2) SacidSampler  pitch-tracking sampler
+  3) SacidKit      808 / 909 drum machine
+  4) Sacid303      303 bass synth + sequencer
+  5) SacidHalo     harmonic exciter + reverb (effect)
+
+Which ones? Numbers like "1 3 5", Enter = all, q = quit:
+```
+
+Type the numbers you want, or press Enter for all of them. Plugins you already have are updated to the newest version, so run the same command again later to update.
 
 ### Mac
 
